@@ -7,9 +7,11 @@ const commands = require('./commands/commands');
 const requestCommands = require('./commands/request');
 const adminCommands = require('./commands/admin');
 
-
+// Telegram bot token
 const token = process.env.BOT_TOKEN;
-const bot = new TelegramBot(token, { polling: true });
+
+// Initialize bot
+const bot = new TelegramBot(token);
 
 // Register commands
 startCommand(bot);
@@ -20,4 +22,5 @@ commands(bot);
 requestCommands(bot);
 adminCommands(bot);
 
+// Export the bot for other uses
 module.exports = bot;
