@@ -3,29 +3,31 @@ module.exports = (bot) => {
     const chatId = msg.chat.id;
 
     const commandsMessage = `
-📋 *Available Commands:*
+<b>📋 Available Commands:</b>
 
-👤 *User Commands*
-/start – Start your journey with stock alerts
-/help – Learn what this bot does and how to use it  
-/about – Get to know your Stock Alert Assistant
-/commands – View all available commands
-/alerts – Get your latest stock alerts  
+<b>👤 User Commands</b>
+/start – Start your journey with stock alerts<br>
+/help – Learn what this bot does and how to use it<br>
+/about – Get to know your Stock Alert Assistant<br>
+/commands – View all available commands<br>
+/alerts – Get your latest stock alerts<br>
 
-🛠️ *Admin Commands*
-/send_message – Send a message to all users  
-/send_video – Send a video to all users
-/send_alert – Send a stock alert to all users
-/users – View the number of registered users  
+<b>🛠️ Admin Commands</b>
+/send_message – Send a message to all users<br>
+/send_video – Send a video to all users<br>
+/send_alert – Send a stock alert to all users<br>
+/users – View the number of registered users<br>
+/list_users – List all registered users<br>
+/add_admin &lt;id&gt; – Add a user as an admin<br>
+/remove_admin &lt;id&gt; – Remove a user from admin status<br>
+/list_admins – List all admins<br>
 
-/list_users – List all registered users
-/add_admin <id> – Add a user as an admin
-/remove_admin <id> – Remove a user from admin status
-/list_admins – List all admins
-
-_For admin commands, make sure you have the necessary permissions._
+<i>For admin commands, make sure you have the necessary permissions.</i>
     `;
 
-    bot.sendMessage(chatId, commandsMessage, { parse_mode: "Markdown" });
+    bot.sendMessage(chatId, commandsMessage, { parse_mode: "HTML" })
+      .catch((error) => {
+        console.error('Failed to send /commands message:', error.message);
+      });
   });
 };
