@@ -18,7 +18,7 @@ module.exports = (bot) => {
     }
 
     try {
-      const isAdmin = await adminCheck(); // Replace with actual admin check logic
+      const isAdmin = await adminCheck(msg.from.id); // Replace with actual admin check logic
       if (!isAdmin) {
         bot.sendMessage(
           chatId,
