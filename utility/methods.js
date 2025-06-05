@@ -13,7 +13,7 @@ async function sendToAllUsers(bot, message, chatId) {
         // If message is an object with video, send as video with optional caption
         if (typeof message === "object" && message.video) {
           await bot.sendVideo(user.id, message.video, {
-            caption: message.text || "",
+            caption: "New Video Alert!",
           });
         } else {
           // Otherwise send as plain text
