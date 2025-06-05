@@ -125,7 +125,7 @@ module.exports = (bot) => {
     ) {
       const video = msg.video.file_id;
       const caption = "🎥 New video for you!";
-      await sendToAllUsers(bot, { type: "video", file_id: video, caption }, chatId);
+      await sendToAllUsers(bot, { type: "video", file_id: video, text: caption }, chatId);
 
       //
       delete userSessions[chatId];
