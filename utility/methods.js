@@ -10,14 +10,14 @@ async function sendToAllUsers(bot, message, chatId) {
 
     for (let user of Object.values(users)) {
       try {
-        // If message is an object with video, send as video with optional caption
-        if (typeof message === "object" && message.video) {
-          await bot.sendVideo(user.id, message.video, {
-            caption: "New Video Alert!",
+        if (typeof message === "object" && message.type === "video" && message.file_id) {
+          await bot.sendVideo(user.id, message.file_id, {
+            caption: message.text?.trim() || undefined,
           });
-        } else {
-          // Otherwise send as plain text
+        } else if (typeof message === "string" && message.trim() !== "") {
           await bot.sendMessage(user.id, message);
+        } else {
+          console.warn(`Skipped user ${user.id} — empty message`);
         }
       } catch (error) {
         console.error(`Error sending to user ${user.id}:`, error.message);
@@ -30,6 +30,7 @@ async function sendToAllUsers(bot, message, chatId) {
     await bot.sendMessage(chatId, "⚠️ There was an error while sending to users.");
   }
 }
+
 
 module.exports = {
   sendToAllUsers,
